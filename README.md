@@ -28,19 +28,8 @@ Role-based access control is essential for managing permissions and ensuring sec
 ✅ Data is shared securely without physical duplication.  
 ✅ Role-based access control ensures security and efficient management of permissions.  
 
-## 🔮 Future Enhancements
-- Automate data masking and sharing using **Python & Snowflake API**.
-- Implement **Role-Based Access Control (RBAC)** for enhanced security.
-- Schedule automated data loads using **Snowflake Tasks & Streams**.
 
-## 🤝 Contributing
-Contributions are welcome! Feel free to submit issues and pull requests to enhance this project.
 
-## 📜 License
-This project is licensed under the **MIT License**.
-
----
-**Author:** Your Name | **Contact:** your.email@example.com
 
 
 
