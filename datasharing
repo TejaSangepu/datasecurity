@@ -1,0 +1,28 @@
+create or replace database datasharing;
+create or replace schema ds;
+CREATE TABLE emp(
+    empid INT,
+    fristname STRING,
+    LastName STRING,
+    JoinDate DATE
+);
+
+-- Insert sample data
+INSERT INTO emp (empid,fristname, LastName, JoinDate) VALUES
+(1, 'teju', 'Doe', '2024-06-15'),
+(2, 'hin', 'Smith', '2024-05-10'),
+(3, 'alex', 'Johnson', '2024-05-25'),
+(4, 'preethi', 'Davis', '2024-06-05'),
+(5, 'Don', 'Brown', '2024-05-30');
+create  or replace secure view EMPVIEW as
+select *
+from emp
+  where DATE_PART('month',JoinDate) = DATE_PART('month', CURRENT_DATE)-1
+  AND DATE_PART('year',JoinDate)=DATE_PART('year',CURRENT_DATE);
+create or replace share datashare;
+GRANT USAGE ON DATABASE datasharing TO SHARE datashare;
+GRANT USAGE ON SCHEMA datasharing.ds TO SHARE datashare;
+GRANT SELECT ON VIEW datasharing.ds.empview TO SHARE datashare;
+USE role accountadmin
+alter share datashare ADD ACCOUNTS= SFZNTZZ.RDB44744;
+alter share datashare ADD ACCOUNTS=FNB97331 ;
