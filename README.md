@@ -1,5 +1,5 @@
 # Snowflake Data Sharing & Data Masking Project
-Overview
+📌 Overview
 
 This project demonstrates secure data sharing and data masking using Snowflake and AWS S3. The focus is on ensuring data privacy while enabling seamless data collaboration. The key aspects covered in this project include:
 
