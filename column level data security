@@ -1,0 +1,55 @@
+use role sysadmin;
+create or replace database now;
+create or replace schema now_sch;
+CREATE TABLE employee (
+    empid INT,
+    ename varchar,
+    deptno INT,
+    salary NUMBER,
+    Phone_no STRING,
+    emp_state STRING
+);
+INSERT INTO employee (empid, ename, deptno, salary, Phone_no, emp_state) VALUES
+(1, 'tejaswini', 10, 60000, '1234567890', 'Telangana'),
+(2, 'karthika', 20, 70000, '0987654321', 'Andhrapradesh'),
+(3, 'niharika', 30, 80000, '1122334455', 'Karnataka'),
+(4, 'saivenkat', 40, 90000, '6677889900', 'Telangana'),
+(5, 'Evenan', 50, 100000, '4455667788', 'Tamilnadu');
+
+select * from employee;
+create or replace masking policy clm as (pii_text string)
+    returns string ->
+    case
+        when current_role() in ('SYSADMIN')
+            then pii_text
+        when current_role() in ('USERADMIN') then regexp_replace(pii_text,substring(pii_text,1,3),'x-x')
+        else '*masked*'
+end;
+show masking policies;  
+desc masking  policy clm;
+select get_ddl('POLICY','clm');
+alter table  employee modify column Phone_no set masking  policy clm;
+create or replace masking policy sal as (pii_text number)
+    returns number ->
+    case
+        when current_role() in ('SYSADMIN')
+            then pii_text
+       
+        else null
+end;
+desc masking  policy sal;
+select get_ddl('POLICY','sal');
+alter table  employee modify column salary set masking  policy sal;
+select * from employee;
+desc table employee
+create or replace masking policy sal as (pii_text number)
+    returns number ->
+    case
+        when current_role() in ('SYSADMIN')
+            then pii_text
+       
+        else null
+end;
+desc masking  policy sal;
+select get_ddl('POLICY','sal');
+alter table  employee modify column salary set masking  policy sal;
