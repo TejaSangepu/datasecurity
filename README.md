@@ -32,3 +32,8 @@ Data Processing: Transform and optimize the dataset using SQL queries.
 Data Masking: Apply security policies to restrict access to sensitive data.
 
 Data Sharing: Enable secure data access across Snowflake accounts.
+🎯 Expected Outcomes
+
+✅ Data is securely loaded from AWS S3 into Snowflake.
+✅ Sensitive information (e.g., email addresses) is masked for unauthorized users.
+✅ Data is shared securely without physical duplication.
