@@ -1,0 +1,31 @@
+create or replace database drr;
+create or replace schema rw;
+CREATE TABLE employee (
+    empid INT PRIMARY KEY,
+    ename VARCHAR(100),
+    deptno INT,
+    salary INT,
+    Phone_no VARCHAR(15),
+    emp_state VARCHAR(50)
+);
+
+-- Insert 5 records into the employee table
+INSERT INTO employee (empid, ename, deptno, salary, Phone_no, emp_state) VALUES
+(1, 'teju', 10, 60000, '1234567890', 'Telangana'),
+(2, 'karthik', 20, 70000, '0987654321', 'Andhrapradesh'),
+(3, 'niha', 30, 80000, '1122334455', 'Karnataka'),
+(4, 'sai', 40, 90000, '6677889900', 'Telangana'),
+(5, 'Even', 50, 100000, '4455667788', 'Tamilnadu');
+
+select * from employee;
+
+select current_role();
+CREATE OR REPLACE VIEW emp AS
+SELECT *
+FROM employee
+WHERE upper(emp_state) = upper(current_role());
+
+create or replace role Telangana;
+
+create or replace user tejus password = '1234';
+grant role Telangana to user tejus;
